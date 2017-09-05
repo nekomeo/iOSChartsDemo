@@ -9,7 +9,7 @@
 import UIKit
 import Charts
 
-class BarChartViewController: UIViewController {
+class BarChartViewController: UIViewController, ChartViewDelegate {
 
     @IBOutlet weak var barChartView: BarChartView!
     
@@ -23,6 +23,9 @@ class BarChartViewController: UIViewController {
         let unitsSold = [20.0, 4.0, 6.0, 3.0, 12.0, 16.0, 4.0, 18.0, 2.0, 4.0, 5.0, 4.0]
         
         setChart(values: unitsSold)
+        
+        // ChartViewDelegate
+        barChartView.delegate = self
     }
     
     func setChart(values: [Double]) {
@@ -57,6 +60,10 @@ class BarChartViewController: UIViewController {
         // Add a limit line
         let ll = ChartLimitLine(limit: 10.0, label: "Target")
         barChartView.rightAxis.addLimitLine(ll)
+    }
+    
+    func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: Highlight) {
+        println("\(entry.value) in \(months[entry.xIndex])")
     }
 
 }
