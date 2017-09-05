@@ -33,7 +33,7 @@ class BarChartViewController: UIViewController {
             let dataEntry = BarChartDataEntry(x: Double(i), yValues: [values[i]], data: months[i] as AnyObject)
             //let dataEntry = BarChartDataEntry(x: Double(i + 1), y: values[i], data: months[i] as AnyObject)
             //= BarChartDataEntry(value: values[i], xIndex: i)
-            dataEntry.icon = #imageLiteral(resourceName: "icon")
+//            dataEntry.icon = #imageLiteral(resourceName: "icon")
             dataEntries.append(dataEntry)
         }
         
@@ -47,6 +47,16 @@ class BarChartViewController: UIViewController {
     
         //= BarChartData(xVals: months, dataSet: chartDataSet)
         barChartView.data = chartData
+        barChartView.chartDescription?.text = "" // Get rid of description on bottom right side
+        
+//        chartDataSet.colors = [UIColor(red: 230/255, green: 126/255, blue: 34/255, alpha: 1)]
+        chartDataSet.colors = ChartColorTemplates.colorful()
+        
+//        barChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInBounce)
+        
+        // Add a limit line
+        let ll = ChartLimitLine(limit: 10.0, label: "Target")
+        barChartView.rightAxis.addLimitLine(ll)
     }
 
 }
