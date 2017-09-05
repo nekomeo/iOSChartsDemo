@@ -11,6 +11,8 @@ import Charts
 
 class BarChartViewController: UIViewController {
 
+    @IBOutlet weak var barChartView: BarChartView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
